@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct HomeView: View {
+    
     var body: some View {
         Text("Home")
     }
 }
 
 struct CarsView: View {
+    	
     var body: some View {
         Text("Cars")
     }
@@ -42,7 +44,7 @@ struct HomePage: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 0) {
+            VStack {
                 switch selectedTab {
                 case 0:
                     HomeView()
@@ -58,9 +60,11 @@ struct HomePage: View {
                     HomeView()
                 }
                 
-                Divider()
+                LoginPage()
                 
-                HStack(spacing: 0) {
+           
+                
+                HStack(alignment:.bottom) {
                     NavigationLink(destination: HomeView(),
                                    tag: 0,
                                    selection: Binding<Int?>(
