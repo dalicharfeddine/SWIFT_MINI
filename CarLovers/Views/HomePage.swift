@@ -13,7 +13,7 @@ struct HomeView: View {
     }
 }
 
-struct CarsView: View {
+struct CarView: View {
     var body: some View {
         Text("Cars")
     }
@@ -25,13 +25,13 @@ struct AddView: View {
     }
 }
 
-struct EventView: View {
+struct EventsView: View {
     var body: some View {
         Text("Event")
     }
 }
 
-struct ProfileView: View {
+struct ProfilView: View {
     var body: some View {
         Text("Profile")
     }
@@ -47,31 +47,30 @@ struct HomePage: View {
                 case 0:
                     HomeView()
                 case 1:
-                    CarsView()
+                    CarView()
                 case 2:
                     AddView()
                 case 3:
-                    EventView()
+                    EventsView()
                 case 4:
-                    ProfileView()
+                    ProfilView()
                 default:
                     HomeView()
                 }
                 
                 Divider()
                 
-                HStack(spacing: 0) {
-                    NavigationLink(destination: HomeView(),
-                                   tag: 0,
-                                   selection: Binding<Int?>(
-                                                                      get: { self.selectedTab },
-                                                                      set: { self.selectedTab = $0 ?? 0 })) {
+                HStack {
+                    NavigationLink(destination: HomeView(), isActive: Binding<Bool>(
+                        get: { self.selectedTab == 0 },
+                        set: { if $0 { self.selectedTab = 0 } }
+                    )) {
                         Image(systemName: "house.fill")
                             .foregroundColor(selectedTab == 0 ? .blue : .gray)
                             .frame(maxWidth: .infinity)
                     }
                     
-                    NavigationLink(destination: CarsView(),
+                    NavigationLink(destination: CarView(),
                                    tag: 1,
                                    selection: Binding<Int?>(
                                                                       get: { self.selectedTab },
@@ -91,7 +90,7 @@ struct HomePage: View {
                             .frame(maxWidth: .infinity)
                     }
                     
-                    NavigationLink(destination: EventView(),
+                    NavigationLink(destination: EventsView(),
                                    tag: 3,
                                    selection: Binding<Int?>(
                                                                       get: { self.selectedTab },
@@ -101,7 +100,7 @@ struct HomePage: View {
                             .frame(maxWidth: .infinity)
                     }
                     
-                    NavigationLink(destination: ProfileView(),
+                    NavigationLink(destination: ProfilView(),
                                    tag: 4,
                                    selection: Binding<Int?>(
                                                                       get: { self.selectedTab },
@@ -124,4 +123,3 @@ struct HomePage_Previews: PreviewProvider {
         HomePage()
     }
 }
-

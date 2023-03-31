@@ -6,6 +6,7 @@
 //
 
 import Alamofire
+import AlamofireImage // Add this line
 
 /*class MyService {
     func fetchItems(completion: @escaping ([Item]?) -> Void) {
@@ -26,4 +27,7 @@ import Alamofire
         }
     }
 }
-*/
+ */
+
+
+

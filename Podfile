@@ -6,6 +6,7 @@ target 'CarLovers' do
   use_frameworks!
 
   pod 'Alamofire'
+  pod 'AlamofireImage'
   # Pods for CarLovers
 
   target 'CarLoversTests' do
