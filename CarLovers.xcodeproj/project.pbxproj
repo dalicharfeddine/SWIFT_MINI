@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		8801DDEB29CBB3AE006D0EE0 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8801DDEA29CBB3AE006D0EE0 /* UserProfile.swift */; };
+		883FB52529D68F2E00F1FB3E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883FB52429D68F2E00F1FB3E /* LoginViewModel.swift */; };
+		88B73F1629D64256002725D6 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B73F1529D64256002725D6 /* SignupViewModel.swift */; };
+		88B73F1829D65D68002725D6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B73F1729D65D68002725D6 /* User.swift */; };
 		88C2CBBD29C8E24500B263D5 /* CarLoversApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C2CBBC29C8E24500B263D5 /* CarLoversApp.swift */; };
 		88C2CBBF29C8E24500B263D5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C2CBBE29C8E24500B263D5 /* ContentView.swift */; };
 		88C2CBC129C8E24600B263D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88C2CBC029C8E24600B263D5 /* Assets.xcassets */; };
@@ -54,6 +57,9 @@
 		71ACC31DC5E9DD4DE4F11905 /* Pods-CarLoversTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarLoversTests.release.xcconfig"; path = "Target Support Files/Pods-CarLoversTests/Pods-CarLoversTests.release.xcconfig"; sourceTree = "<group>"; };
 		84E30DE9AD2DFB9002336614 /* Pods-CarLoversTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarLoversTests.debug.xcconfig"; path = "Target Support Files/Pods-CarLoversTests/Pods-CarLoversTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8801DDEA29CBB3AE006D0EE0 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		883FB52429D68F2E00F1FB3E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = CarLovers/Views/LoginViewModel.swift; sourceTree = SOURCE_ROOT; };
+		88B73F1529D64256002725D6 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignupViewModel.swift; path = CarLovers/Views/SignupViewModel.swift; sourceTree = SOURCE_ROOT; };
+		88B73F1729D65D68002725D6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = CarLovers/Views/User.swift; sourceTree = SOURCE_ROOT; };
 		88C2CBB929C8E24500B263D5 /* CarLovers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarLovers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C2CBBC29C8E24500B263D5 /* CarLoversApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarLoversApp.swift; sourceTree = "<group>"; };
 		88C2CBBE29C8E24500B263D5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -203,6 +209,7 @@
 		88C2CBEC29C8E39400B263D5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				88B73F1729D65D68002725D6 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -210,6 +217,8 @@
 		88C2CBED29C8E39D00B263D5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				88B73F1529D64256002725D6 /* SignupViewModel.swift */,
+				883FB52429D68F2E00F1FB3E /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -475,12 +484,15 @@
 			files = (
 				88FB9D5329CBD8C700910F92 /* PostView.swift in Sources */,
 				88C2CBF529C8E4A200B263D5 /* SignInPage.swift in Sources */,
+				88B73F1629D64256002725D6 /* SignupViewModel.swift in Sources */,
 				88C2CBF729C8E4B100B263D5 /* HomePage.swift in Sources */,
+				88B73F1829D65D68002725D6 /* User.swift in Sources */,
 				88FB9D5129CBD6CE00910F92 /* EventView.swift in Sources */,
 				88C2CBC629C8E24600B263D5 /* Persistence.swift in Sources */,
 				88C2CBBF29C8E24500B263D5 /* ContentView.swift in Sources */,
 				88C2CBEF29C8E45B00B263D5 /* SplashScreenView.swift in Sources */,
 				88FB9D4F29CBCEB700910F92 /* CarView.swift in Sources */,
+				883FB52529D68F2E00F1FB3E /* LoginViewModel.swift in Sources */,
 				8801DDEB29CBB3AE006D0EE0 /* UserProfile.swift in Sources */,
 				88C2CBF129C8E47600B263D5 /* WelcomePage.swift in Sources */,
 				88C2CBF329C8E48A00B263D5 /* LoginPage.swift in Sources */,
