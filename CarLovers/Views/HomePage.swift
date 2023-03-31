@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct HomeView: View {
+    
     var body: some View {
         Text("Home")
     }
 }
 
+<<<<<<< HEAD
 struct CarView: View {
+=======
+struct CarsView: View {
+    	
+>>>>>>> 6723ad7d9d5c45de725f6d93312e00bdd72b5cf0
     var body: some View {
         Text("Cars")
     }
@@ -42,7 +48,7 @@ struct HomePage: View {
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 0) {
+            VStack {
                 switch selectedTab {
                 case 0:
                     HomeView()
@@ -58,13 +64,24 @@ struct HomePage: View {
                     HomeView()
                 }
                 
-                Divider()
+                LoginPage()
                 
+<<<<<<< HEAD
                 HStack {
                     NavigationLink(destination: HomeView(), isActive: Binding<Bool>(
                         get: { self.selectedTab == 0 },
                         set: { if $0 { self.selectedTab = 0 } }
                     )) {
+=======
+           
+                
+                HStack(alignment:.bottom) {
+                    NavigationLink(destination: HomeView(),
+                                   tag: 0,
+                                   selection: Binding<Int?>(
+                                                                      get: { self.selectedTab },
+                                                                      set: { self.selectedTab = $0 ?? 0 })) {
+>>>>>>> 6723ad7d9d5c45de725f6d93312e00bdd72b5cf0
                         Image(systemName: "house.fill")
                             .foregroundColor(selectedTab == 0 ? .blue : .gray)
                             .frame(maxWidth: .infinity)

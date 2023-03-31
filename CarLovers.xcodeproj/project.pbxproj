@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8801DDEB29CBB3AE006D0EE0 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8801DDEA29CBB3AE006D0EE0 /* UserProfile.swift */; };
 		88C2CBBD29C8E24500B263D5 /* CarLoversApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C2CBBC29C8E24500B263D5 /* CarLoversApp.swift */; };
 		88C2CBBF29C8E24500B263D5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C2CBBE29C8E24500B263D5 /* ContentView.swift */; };
 		88C2CBC129C8E24600B263D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88C2CBC029C8E24600B263D5 /* Assets.xcassets */; };
@@ -22,7 +23,13 @@
 		88C2CBF529C8E4A200B263D5 /* SignInPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C2CBF429C8E4A200B263D5 /* SignInPage.swift */; };
 		88C2CBF729C8E4B100B263D5 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C2CBF629C8E4B100B263D5 /* HomePage.swift */; };
 		88C2CBFA29C8E79600B263D5 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C2CBF929C8E79600B263D5 /* Api.swift */; };
+<<<<<<< HEAD
 		88E4D9E829CA0E9100875BA6 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E4D9E729CA0E9100875BA6 /* Home.swift */; };
+=======
+		88FB9D4F29CBCEB700910F92 /* CarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FB9D4E29CBCEB700910F92 /* CarView.swift */; };
+		88FB9D5129CBD6CE00910F92 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FB9D5029CBD6CE00910F92 /* EventView.swift */; };
+		88FB9D5329CBD8C700910F92 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FB9D5229CBD8C700910F92 /* PostView.swift */; };
+>>>>>>> 6723ad7d9d5c45de725f6d93312e00bdd72b5cf0
 		94C3859CA3CE826D1761F399 /* Pods_CarLovers_CarLoversUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1F994E956AC6BF419F995C1 /* Pods_CarLovers_CarLoversUITests.framework */; };
 		9BC35F84CB1EF1BBE725B4D6 /* Pods_CarLovers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D39C9CD1D9C09CE42D038EED /* Pods_CarLovers.framework */; };
 		B0F2FBD57B4DF5CF7C6FD736 /* Pods_CarLoversTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD93995D517E5558BAC3197B /* Pods_CarLoversTests.framework */; };
@@ -50,6 +57,7 @@
 		6A0DFA6AE7EBD493CBB5E504 /* Pods-CarLovers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarLovers.release.xcconfig"; path = "Target Support Files/Pods-CarLovers/Pods-CarLovers.release.xcconfig"; sourceTree = "<group>"; };
 		71ACC31DC5E9DD4DE4F11905 /* Pods-CarLoversTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarLoversTests.release.xcconfig"; path = "Target Support Files/Pods-CarLoversTests/Pods-CarLoversTests.release.xcconfig"; sourceTree = "<group>"; };
 		84E30DE9AD2DFB9002336614 /* Pods-CarLoversTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarLoversTests.debug.xcconfig"; path = "Target Support Files/Pods-CarLoversTests/Pods-CarLoversTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8801DDEA29CBB3AE006D0EE0 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		88C2CBB929C8E24500B263D5 /* CarLovers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarLovers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C2CBBC29C8E24500B263D5 /* CarLoversApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarLoversApp.swift; sourceTree = "<group>"; };
 		88C2CBBE29C8E24500B263D5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,7 +76,13 @@
 		88C2CBF429C8E4A200B263D5 /* SignInPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPage.swift; sourceTree = "<group>"; };
 		88C2CBF629C8E4B100B263D5 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		88C2CBF929C8E79600B263D5 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		88E4D9E729CA0E9100875BA6 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+=======
+		88FB9D4E29CBCEB700910F92 /* CarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarView.swift; sourceTree = "<group>"; };
+		88FB9D5029CBD6CE00910F92 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
+		88FB9D5229CBD8C700910F92 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+>>>>>>> 6723ad7d9d5c45de725f6d93312e00bdd72b5cf0
 		A8EC6E574B458965B8F8FB46 /* Pods-CarLovers-CarLoversUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarLovers-CarLoversUITests.release.xcconfig"; path = "Target Support Files/Pods-CarLovers-CarLoversUITests/Pods-CarLovers-CarLoversUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CD93995D517E5558BAC3197B /* Pods_CarLoversTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarLoversTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D39C9CD1D9C09CE42D038EED /* Pods_CarLovers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CarLovers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,7 +200,14 @@
 				88C2CBF229C8E48A00B263D5 /* LoginPage.swift */,
 				88C2CBF429C8E4A200B263D5 /* SignInPage.swift */,
 				88C2CBF629C8E4B100B263D5 /* HomePage.swift */,
+<<<<<<< HEAD
 				88E4D9E729CA0E9100875BA6 /* Home.swift */,
+=======
+				8801DDEA29CBB3AE006D0EE0 /* UserProfile.swift */,
+				88FB9D4E29CBCEB700910F92 /* CarView.swift */,
+				88FB9D5029CBD6CE00910F92 /* EventView.swift */,
+				88FB9D5229CBD8C700910F92 /* PostView.swift */,
+>>>>>>> 6723ad7d9d5c45de725f6d93312e00bdd72b5cf0
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -464,12 +485,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88FB9D5329CBD8C700910F92 /* PostView.swift in Sources */,
 				88C2CBF529C8E4A200B263D5 /* SignInPage.swift in Sources */,
 				88C2CBF729C8E4B100B263D5 /* HomePage.swift in Sources */,
+				88FB9D5129CBD6CE00910F92 /* EventView.swift in Sources */,
 				88C2CBC629C8E24600B263D5 /* Persistence.swift in Sources */,
 				88C2CBBF29C8E24500B263D5 /* ContentView.swift in Sources */,
 				88E4D9E829CA0E9100875BA6 /* Home.swift in Sources */,
 				88C2CBEF29C8E45B00B263D5 /* SplashScreenView.swift in Sources */,
+				88FB9D4F29CBCEB700910F92 /* CarView.swift in Sources */,
+				8801DDEB29CBB3AE006D0EE0 /* UserProfile.swift in Sources */,
 				88C2CBF129C8E47600B263D5 /* WelcomePage.swift in Sources */,
 				88C2CBF329C8E48A00B263D5 /* LoginPage.swift in Sources */,
 				88C2CBBD29C8E24500B263D5 /* CarLoversApp.swift in Sources */,
