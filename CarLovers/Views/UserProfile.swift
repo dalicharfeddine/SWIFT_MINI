@@ -8,63 +8,57 @@
 import SwiftUI
 
 struct UserProfile: View {
+    @Environment(\.presentationMode) var presentationMode
+
+    @ObservedObject var viewModel = ProfileViewModel()
     @State private var showingMatches = false
     @State private var showingEvents = false
+    @State private var showingUpdateProfileView = true
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            VStack(spacing: 10) {
-                // Background image
+        VStack(alignment: .leading, spacing: 5){
+            HStack {
                 Image("bmw")
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(height: UIScreen.main.bounds.height * 0.25)
-                    .clipped()
+                    .scaledToFit()
+                    .clipShape(Circle())
+                    .frame(width: 70, height: 70)
                 
-                // User info section
                 VStack(alignment: .leading, spacing: 5) {
-                    HStack {
-                        Image("bmw")
-                            .resizable()
-                            .scaledToFit()
-                            .clipShape(Circle())
-                            .frame(width: 70, height: 70)
-                        
-                        VStack(alignment: .leading, spacing: 5) {
-                            Text("User Name")
-                                .font(.title)
-                                .fontWeight(.bold)
-                            
-                            HStack(spacing: 10) {
-                                Text("Likes: 10")
-                                    .foregroundColor(.gray)
-                                Text("Matches: 5")
-                                    .foregroundColor(.gray)
-                            }
-                        }
-                        .padding(.leading)
+                    if let username = viewModel.user?.username {
+                        Text(username)
+                            .font(.title)
+                            .fontWeight(.bold)
                     }
-                    .padding(.horizontal)
                     
-                    Button(action: {
-                        // Action for updating profile
-                    }, label: {
-                        Text("Update Profile")
-                            .foregroundColor(.white)
-                            .font(.headline)
-                    })
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 50)
-                    .background(Color.blue)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .padding(.horizontal)
-                    .padding(.top, 10)
+                    HStack(spacing: 10) {
+                        Text("Likes: 10")
+                            .foregroundColor(.gray)
+                        Text("Matches: 5")
+                            .foregroundColor(.gray)
+                    }
                 }
-                .background(Color.white)
-                
-                Spacer()
+                .padding(.leading)
             }
+            .padding(.horizontal)
             
+            Button(action: {
+                           viewModel.fetchUser()
+                           showingUpdateProfileView = true
+                       }, label: {
+                           Text("Update Profile")
+                               .foregroundColor(.white)
+                               .font(.headline)
+                       })
+                       .sheet(isPresented: $showingUpdateProfileView) {
+                           UpdateProfile(viewModel: viewModel)
+                       }
+                       .frame(maxWidth: .infinity)
+                       .frame(height: 50)
+                       .background(Color.blue)
+                       .clipShape(RoundedRectangle(cornerRadius: 10))
+            Spacer();
+
             // Match and Event buttons
             HStack(spacing: 20) {
                 Button(action: {
@@ -102,9 +96,11 @@ struct UserProfile: View {
         .sheet(isPresented: $showingEvents, content: {
             EventsView()
         })
+        .onAppear {
+            viewModel.fetchUser()
+        }
     }
 }
-
 
 struct MatchesView: View {
     var body: some View {

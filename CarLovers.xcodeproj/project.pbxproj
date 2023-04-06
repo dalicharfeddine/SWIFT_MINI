@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8801DDEB29CBB3AE006D0EE0 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8801DDEA29CBB3AE006D0EE0 /* UserProfile.swift */; };
 		883FB52529D68F2E00F1FB3E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883FB52429D68F2E00F1FB3E /* LoginViewModel.swift */; };
+		88963F1629DE9C3C00FD122C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88963F1529DE9C3C00FD122C /* ProfileViewModel.swift */; };
+		88963F1829DE9D7D00FD122C /* UpdatePofile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88963F1729DE9D7D00FD122C /* UpdatePofile.swift */; };
 		88B73F1629D64256002725D6 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B73F1529D64256002725D6 /* SignupViewModel.swift */; };
 		88B73F1829D65D68002725D6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B73F1729D65D68002725D6 /* User.swift */; };
 		88C2CBBD29C8E24500B263D5 /* CarLoversApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C2CBBC29C8E24500B263D5 /* CarLoversApp.swift */; };
@@ -58,6 +60,8 @@
 		84E30DE9AD2DFB9002336614 /* Pods-CarLoversTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarLoversTests.debug.xcconfig"; path = "Target Support Files/Pods-CarLoversTests/Pods-CarLoversTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8801DDEA29CBB3AE006D0EE0 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		883FB52429D68F2E00F1FB3E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = CarLovers/Views/LoginViewModel.swift; sourceTree = SOURCE_ROOT; };
+		88963F1529DE9C3C00FD122C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		88963F1729DE9D7D00FD122C /* UpdatePofile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePofile.swift; sourceTree = "<group>"; };
 		88B73F1529D64256002725D6 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignupViewModel.swift; path = CarLovers/Views/SignupViewModel.swift; sourceTree = SOURCE_ROOT; };
 		88B73F1729D65D68002725D6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = CarLovers/Views/User.swift; sourceTree = SOURCE_ROOT; };
 		88C2CBB929C8E24500B263D5 /* CarLovers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarLovers.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,6 +206,7 @@
 				88FB9D4E29CBCEB700910F92 /* CarView.swift */,
 				88FB9D5029CBD6CE00910F92 /* EventView.swift */,
 				88FB9D5229CBD8C700910F92 /* PostView.swift */,
+				88963F1729DE9D7D00FD122C /* UpdatePofile.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 			children = (
 				88B73F1529D64256002725D6 /* SignupViewModel.swift */,
 				883FB52429D68F2E00F1FB3E /* LoginViewModel.swift */,
+				88963F1529DE9C3C00FD122C /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -483,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88FB9D5329CBD8C700910F92 /* PostView.swift in Sources */,
+				88963F1629DE9C3C00FD122C /* ProfileViewModel.swift in Sources */,
 				88C2CBF529C8E4A200B263D5 /* SignInPage.swift in Sources */,
 				88B73F1629D64256002725D6 /* SignupViewModel.swift in Sources */,
 				88C2CBF729C8E4B100B263D5 /* HomePage.swift in Sources */,
@@ -494,6 +501,7 @@
 				88FB9D4F29CBCEB700910F92 /* CarView.swift in Sources */,
 				883FB52529D68F2E00F1FB3E /* LoginViewModel.swift in Sources */,
 				8801DDEB29CBB3AE006D0EE0 /* UserProfile.swift in Sources */,
+				88963F1829DE9D7D00FD122C /* UpdatePofile.swift in Sources */,
 				88C2CBF129C8E47600B263D5 /* WelcomePage.swift in Sources */,
 				88C2CBF329C8E48A00B263D5 /* LoginPage.swift in Sources */,
 				88C2CBBD29C8E24500B263D5 /* CarLoversApp.swift in Sources */,

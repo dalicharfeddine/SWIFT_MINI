@@ -102,11 +102,14 @@ struct LoginPage: View {
                             .background(Color.white.opacity(0.3))
                             .cornerRadius(10)
                     }
-                    if redirectToHomePage {
-                        NavigationLink(destination: HomePage()) {
+
+                    // Redirection
+                    if loginSuccess {
+                        NavigationLink(destination: HomePage(), isActive: $redirectToHomePage) {
                             EmptyView()
                         }
                     }
+
                 }
                 .navigationBarItems(
                     leading: Button(action: {

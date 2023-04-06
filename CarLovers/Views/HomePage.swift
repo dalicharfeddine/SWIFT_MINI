@@ -7,15 +7,9 @@
 
 import SwiftUI
 
-struct HomeView: View {
-    
-    var body: some View {
-        Text("Home")
-    }
-}
 
 struct CarsView: View {
-    	
+        
     var body: some View {
         Text("Cars")
     }
@@ -40,14 +34,14 @@ struct ProfileView: View {
 }
 
 struct HomePage: View {
-    @State private var selectedTab = 0
-    
+    @State private var selectedTab = 5
+
     var body: some View {
         NavigationView {
             VStack {
                 switch selectedTab {
                 case 0:
-                    HomeView()
+                    PostView()
                 case 1:
                     CarsView()
                 case 2:
@@ -55,25 +49,26 @@ struct HomePage: View {
                 case 3:
                     EventView()
                 case 4:
-                    ProfileView()
+                    UserProfile()
                 default:
-                    HomeView()
+                    PostView()
                 }
                 
-                LoginPage()
                 
            
                 
                 HStack(alignment:.bottom) {
-                    NavigationLink(destination: HomeView(),
+                    NavigationLink(destination: PostView(),
                                    tag: 0,
                                    selection: Binding<Int?>(
-                                                                      get: { self.selectedTab },
-                                                                      set: { self.selectedTab = $0 ?? 0 })) {
+                                                   get: { self.selectedTab },
+                                                   set: { self.selectedTab = $0 ?? 0 })) {
                         Image(systemName: "house.fill")
                             .foregroundColor(selectedTab == 0 ? .blue : .gray)
                             .frame(maxWidth: .infinity)
-                    }
+                    }.tag(5)
+
+                    
                     
                     NavigationLink(destination: CarsView(),
                                    tag: 1,
@@ -128,4 +123,3 @@ struct HomePage_Previews: PreviewProvider {
         HomePage()
     }
 }
-

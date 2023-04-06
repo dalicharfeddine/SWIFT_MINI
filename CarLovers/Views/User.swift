@@ -58,3 +58,9 @@ struct User: Decodable {
     let __v: Int
 }
 
+struct UpdateUserRequest: Encodable {
+    let username: String?
+    let email: String?
+    let datedenaissance: String?
+    let numero: String?
+}
