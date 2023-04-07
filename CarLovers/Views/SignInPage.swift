@@ -157,10 +157,20 @@ import SwiftUI
                                                                .foregroundColor(.white)
                                                                .padding()
                                                                .frame(maxWidth: .infinity)
-                                                               .background(Color.gray.opacity(0.3))
+                                                               .background(Color.red.opacity(1
+                                                                                ))
                                                                .cornerRadius(10)
                         }
-
+                        .navigationBarItems(
+                            leading: Button(action: {
+                                // Ajouter l'action que vous voulez exécuter lorsqu'on clique sur le bouton
+                                // Dans ce cas, nous allons simplement effectuer la navigation arrière.
+                                presentationMode.wrappedValue.dismiss()
+                            }) {
+                                Image(systemName: "chevron.left")
+                                    .font(.title)
+                            }
+                        )
                         // use NavigationLink to redirect to LoginPage if sign up is successful
 
                         NavigationLink(destination: LoginPage(), isActive: $isPresented) {

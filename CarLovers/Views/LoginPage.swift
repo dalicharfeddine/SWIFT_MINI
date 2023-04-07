@@ -15,6 +15,7 @@ struct LoginPage: View {
     @State private var isPasswordVisible = false
     @State private var loginSuccess = false
     @State var redirectToHomePage = false
+    @State private var isForgotPasswordLinkTapped = false
 
 
     @Environment(\.presentationMode) var presentationMode
@@ -99,7 +100,7 @@ struct LoginPage: View {
                             .foregroundColor(.white)
                             .font(.system(size: 18))
                             .frame(width: 170, height: 50)
-                            .background(Color.white.opacity(0.3))
+                            .background(Color.red.opacity(5))
                             .cornerRadius(10)
                     }
 
@@ -109,6 +110,16 @@ struct LoginPage: View {
                             EmptyView()
                         }
                     }
+                    Button(action: {
+                        isForgotPasswordLinkTapped = true
+                    }) {
+                        Text("Forgot password?")
+                            .foregroundColor(.red)
+                    }
+                    .sheet(isPresented: $isForgotPasswordLinkTapped) {
+                        ForgotPasword()
+                    }
+
 
                 }
                 .navigationBarItems(

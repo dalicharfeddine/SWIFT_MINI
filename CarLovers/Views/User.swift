@@ -64,3 +64,25 @@ struct UpdateUserRequest: Encodable {
     let datedenaissance: String?
     let numero: String?
 }
+
+
+
+struct SendMailRequest: Encodable {
+    let email: String
+}
+
+struct VerifyCodeRequest: Encodable {
+    let email: String
+    let codeForget: String
+}
+struct ResetPasswordRequest: Encodable {
+    let email: String
+    let codeForget: String
+    let password: String
+}
+struct ChangePasswordRequest: Encodable {
+    let id: String
+    let username: String
+    let email: String
+    let password: String
+}

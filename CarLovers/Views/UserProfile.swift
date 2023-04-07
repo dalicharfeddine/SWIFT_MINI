@@ -13,7 +13,7 @@ struct UserProfile: View {
     @ObservedObject var viewModel = ProfileViewModel()
     @State private var showingMatches = false
     @State private var showingEvents = false
-    @State private var showingUpdateProfileView = true
+    @State private var showingUpdateProfileView = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5){

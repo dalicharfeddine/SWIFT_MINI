@@ -8,30 +8,6 @@
 import SwiftUI
 
 
-struct CarsView: View {
-        
-    var body: some View {
-        Text("Cars")
-    }
-}
-
-struct AddView: View {
-    var body: some View {
-        Text("Add")
-    }
-}
-
-struct EventView: View {
-    var body: some View {
-        Text("Event")
-    }
-}
-
-struct ProfileView: View {
-    var body: some View {
-        Text("Profile")
-    }
-}
 
 struct HomePage: View {
     @State private var selectedTab = 5
@@ -43,11 +19,11 @@ struct HomePage: View {
                 case 0:
                     PostView()
                 case 1:
-                    CarsView()
+                    CardStackView()
                 case 2:
-                    AddView()
+                    UserProfile()
                 case 3:
-                    EventView()
+                    UserProfile()
                 case 4:
                     UserProfile()
                 default:
@@ -70,7 +46,9 @@ struct HomePage: View {
 
                     
                     
-                    NavigationLink(destination: CarsView(),
+                    NavigationLink(destination:                             CardStackView()
+
+,
                                    tag: 1,
                                    selection: Binding<Int?>(
                                                                       get: { self.selectedTab },
@@ -80,7 +58,8 @@ struct HomePage: View {
                             .frame(maxWidth: .infinity)
                     }
                     
-                    NavigationLink(destination: AddView(),
+                    NavigationLink(destination:                     UserProfile()
+,
                                    tag: 2,
                                    selection: Binding<Int?>(
                                                                       get: { self.selectedTab },
@@ -90,7 +69,8 @@ struct HomePage: View {
                             .frame(maxWidth: .infinity)
                     }
                     
-                    NavigationLink(destination: EventView(),
+                    NavigationLink(destination:                    UserProfile()
+,
                                    tag: 3,
                                    selection: Binding<Int?>(
                                                                       get: { self.selectedTab },
@@ -100,7 +80,8 @@ struct HomePage: View {
                             .frame(maxWidth: .infinity)
                     }
                     
-                    NavigationLink(destination: ProfileView(),
+                    NavigationLink(destination:                    UserProfile()
+,
                                    tag: 4,
                                    selection: Binding<Int?>(
                                                                       get: { self.selectedTab },
