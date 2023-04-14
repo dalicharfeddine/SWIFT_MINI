@@ -157,7 +157,7 @@ import SwiftUI
                                                                .foregroundColor(.white)
                                                                .padding()
                                                                .frame(maxWidth: .infinity)
-                                                               .background(Color.red.opacity(1
+                                                               .background(Color.white.opacity(0.6
                                                                                 ))
                                                                .cornerRadius(10)
                         }

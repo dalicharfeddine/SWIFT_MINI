@@ -42,6 +42,18 @@ struct UserProfile: View {
             }
             .padding(.horizontal)
             
+                 Button(action: {
+                     logout()
+                 }, label: {
+                     Text("Logout")
+                         .foregroundColor(.white)
+                         .font(.headline)
+                 })
+                 .frame(maxWidth: .infinity)
+                 .frame(height: 50)
+                 .background(Color.red)
+                 .clipShape(RoundedRectangle(cornerRadius: 10))
+            
             Button(action: {
                            viewModel.fetchUser()
                            showingUpdateProfileView = true
@@ -98,9 +110,32 @@ struct UserProfile: View {
         })
         .onAppear {
             viewModel.fetchUser()
+            viewModel.fetchUser()
         }
+
+
+
+      
+}
+    private func logout() {
+        // Remove the saved user information
+        UserDefaults.standard.removeObject(forKey: "accessToken")
+
+        // Present the login view wrapped in a NavigationView
+        let loginView = LoginPage()
+        let loginViewWithNavigation = NavigationView { loginView }
+        UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: loginViewWithNavigation)
+
+        // Dismiss the current view
+        dismiss()
+    }
+
+    private func dismiss() {
+        // Dismiss the view
+        presentationMode.wrappedValue.dismiss()
     }
 }
+
 
 struct MatchesView: View {
     var body: some View {

@@ -13,7 +13,7 @@ class LoginViewModel: ObservableObject {
     var errorMessage: String?
     
     func login(request: LoginRequest, completion: @escaping (Result<LoginResponse, Error>) -> ()) -> DataRequest {
-        let url = "http://172.17.0.150:9091/user/login"
+        let url = "http://192.168.100.105:9091/user/login"
         
         do {
             let encodedRequest = try JSONEncoder().encode(request)
@@ -30,6 +30,10 @@ class LoginViewModel: ObservableObject {
                             do {
                                 let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
                                 let user = loginResponse.user // Utilisez cette ligne pour récupérer toutes les informations sur l'utilisateur
+                                
+                                // Save access token to UserDefaults
+                                UserDefaults.standard.set(loginResponse.accessToken, forKey: userDefaultsKey)
+                                
                                 completion(.success(loginResponse))
                             } catch {
                                 print(error)

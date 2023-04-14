@@ -10,94 +10,54 @@ import SwiftUI
 
 
 struct HomePage: View {
-    @State private var selectedTab = 5
+    @State private var selectedTab = 0
 
     var body: some View {
         NavigationView {
             VStack {
-                switch selectedTab {
-                case 0:
+                TabView(selection: $selectedTab) {
                     PostView()
-                case 1:
+                        .tag(0)
                     CardStackView()
-                case 2:
+                        .tag(1)
+                    AddCarView()
+                        .tag(2)
+                    AddCarView()
+                        .tag(3)
                     UserProfile()
-                case 3:
-                    UserProfile()
-                case 4:
-                    UserProfile()
-                default:
-                    PostView()
+                        .tag(4)
                 }
-                
-                
-           
-                
-                HStack(alignment:.bottom) {
-                    NavigationLink(destination: PostView(),
-                                   tag: 0,
-                                   selection: Binding<Int?>(
-                                                   get: { self.selectedTab },
-                                                   set: { self.selectedTab = $0 ?? 0 })) {
-                        Image(systemName: "house.fill")
-                            .foregroundColor(selectedTab == 0 ? .blue : .gray)
-                            .frame(maxWidth: .infinity)
-                    }.tag(5)
 
-                    
-                    
-                    NavigationLink(destination:                             CardStackView()
-
-,
-                                   tag: 1,
-                                   selection: Binding<Int?>(
-                                                                      get: { self.selectedTab },
-                                                                      set: { self.selectedTab = $0 ?? 1})) {
-                        Image(systemName: "car.fill")
-                            .foregroundColor(selectedTab == 1 ? .blue : .gray)
-                            .frame(maxWidth: .infinity)
-                    }
-                    
-                    NavigationLink(destination:                     UserProfile()
-,
-                                   tag: 2,
-                                   selection: Binding<Int?>(
-                                                                      get: { self.selectedTab },
-                                                                      set: { self.selectedTab = $0 ?? 2 })) {
-                        Image(systemName: "plus.circle.fill")
-                            .foregroundColor(selectedTab == 2 ? .blue : .gray)
-                            .frame(maxWidth: .infinity)
-                    }
-                    
-                    NavigationLink(destination:                    UserProfile()
-,
-                                   tag: 3,
-                                   selection: Binding<Int?>(
-                                                                      get: { self.selectedTab },
-                                                                      set: { self.selectedTab = $0 ?? 3 })) {
-                        Image(systemName: "calendar.circle.fill")
-                            .foregroundColor(selectedTab == 3 ? .blue : .gray)
-                            .frame(maxWidth: .infinity)
-                    }
-                    
-                    NavigationLink(destination:                    UserProfile()
-,
-                                   tag: 4,
-                                   selection: Binding<Int?>(
-                                                                      get: { self.selectedTab },
-                                                                      set: { self.selectedTab = $0 ?? 4})) {
-                        Image(systemName: "person.crop.circle.fill")
-                            .foregroundColor(selectedTab == 4 ? .blue : .gray)
-                            .frame(maxWidth: .infinity)
-                    }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                
+                HStack(alignment: .bottom) {
+                    Tab(imageName: "house.fill", tag: 0, selectedTab: $selectedTab)
+                    Tab(imageName: "car.fill", tag: 1, selectedTab: $selectedTab)
+                    Tab(imageName: "plus.circle.fill", tag: 2, selectedTab: $selectedTab)
+                    Tab(imageName: "calendar.circle.fill", tag: 3, selectedTab: $selectedTab)
+                    Tab(imageName: "person.crop.circle.fill", tag: 4, selectedTab: $selectedTab)
                 }
-                .background(Color.white)
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             }
-            .edgesIgnoringSafeArea(.bottom)
+            .edgesIgnoringSafeArea(.top)
         }
     }
 }
 
+struct Tab: View {
+    let imageName: String
+    let tag: Int
+    @Binding var selectedTab: Int
+    
+    var body: some View {
+        Image(systemName: imageName)
+            .foregroundColor(selectedTab == tag ? .blue : .gray)
+            .frame(maxWidth: .infinity)
+            .onTapGesture {
+                selectedTab = tag
+            }
+    }
+}
 
 struct HomePage_Previews: PreviewProvider {
     static var previews: some View {

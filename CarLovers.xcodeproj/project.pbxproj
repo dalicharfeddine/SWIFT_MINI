@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		8801DDEB29CBB3AE006D0EE0 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8801DDEA29CBB3AE006D0EE0 /* UserProfile.swift */; };
 		883FB52529D68F2E00F1FB3E /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883FB52429D68F2E00F1FB3E /* LoginViewModel.swift */; };
+		884EB74D29E8E30E00DAD970 /* AddCarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884EB74C29E8E30E00DAD970 /* AddCarView.swift */; };
+		884EB74F29E8FE3000DAD970 /* car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884EB74E29E8FE3000DAD970 /* car.swift */; };
+		884EB75129E8FF0600DAD970 /* carviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884EB75029E8FF0600DAD970 /* carviewModel.swift */; };
 		88963F1629DE9C3C00FD122C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88963F1529DE9C3C00FD122C /* ProfileViewModel.swift */; };
 		88963F1829DE9D7D00FD122C /* UpdatePofile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88963F1729DE9D7D00FD122C /* UpdatePofile.swift */; };
 		88B73F1629D64256002725D6 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B73F1529D64256002725D6 /* SignupViewModel.swift */; };
@@ -68,6 +71,9 @@
 		84E30DE9AD2DFB9002336614 /* Pods-CarLoversTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarLoversTests.debug.xcconfig"; path = "Target Support Files/Pods-CarLoversTests/Pods-CarLoversTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8801DDEA29CBB3AE006D0EE0 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		883FB52429D68F2E00F1FB3E /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = CarLovers/Views/LoginViewModel.swift; sourceTree = SOURCE_ROOT; };
+		884EB74C29E8E30E00DAD970 /* AddCarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarView.swift; sourceTree = "<group>"; };
+		884EB74E29E8FE3000DAD970 /* car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = car.swift; sourceTree = "<group>"; };
+		884EB75029E8FF0600DAD970 /* carviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = carviewModel.swift; sourceTree = "<group>"; };
 		88963F1529DE9C3C00FD122C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		88963F1729DE9D7D00FD122C /* UpdatePofile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePofile.swift; sourceTree = "<group>"; };
 		88B73F1529D64256002725D6 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignupViewModel.swift; path = CarLovers/Views/SignupViewModel.swift; sourceTree = SOURCE_ROOT; };
@@ -229,6 +235,7 @@
 				88F1AC9329DFD2D900A0FE9B /* ForgotPasword.swift */,
 				88F1AC9729DFD9BD00A0FE9B /* resetPasswod.swift */,
 				88F1AC9929DFDD1F00A0FE9B /* VerificationOtp.swift */,
+				884EB74C29E8E30E00DAD970 /* AddCarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -236,6 +243,7 @@
 		88C2CBEC29C8E39400B263D5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				884EB74E29E8FE3000DAD970 /* car.swift */,
 				88B73F1729D65D68002725D6 /* User.swift */,
 			);
 			path = Model;
@@ -248,6 +256,7 @@
 				883FB52429D68F2E00F1FB3E /* LoginViewModel.swift */,
 				88963F1529DE9C3C00FD122C /* ProfileViewModel.swift */,
 				88F1AC9129DFCEF200A0FE9B /* ForgetPswdViewModel.swift */,
+				884EB75029E8FF0600DAD970 /* carviewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -542,9 +551,11 @@
 				88B73F1629D64256002725D6 /* SignupViewModel.swift in Sources */,
 				88C2CBF729C8E4B100B263D5 /* HomePage.swift in Sources */,
 				88B73F1829D65D68002725D6 /* User.swift in Sources */,
+				884EB74F29E8FE3000DAD970 /* car.swift in Sources */,
 				88F1AC9429DFD2D900A0FE9B /* ForgotPasword.swift in Sources */,
 				88F1ACA529DFDFA100A0FE9B /* OTPInputView.swift in Sources */,
 				88FB9D5129CBD6CE00910F92 /* EventView.swift in Sources */,
+				884EB74D29E8E30E00DAD970 /* AddCarView.swift in Sources */,
 				88C2CBC629C8E24600B263D5 /* Persistence.swift in Sources */,
 				88C2CBBF29C8E24500B263D5 /* ContentView.swift in Sources */,
 				88C2CBEF29C8E45B00B263D5 /* SplashScreenView.swift in Sources */,
@@ -553,6 +564,7 @@
 				883FB52529D68F2E00F1FB3E /* LoginViewModel.swift in Sources */,
 				8801DDEB29CBB3AE006D0EE0 /* UserProfile.swift in Sources */,
 				88963F1829DE9D7D00FD122C /* UpdatePofile.swift in Sources */,
+				884EB75129E8FF0600DAD970 /* carviewModel.swift in Sources */,
 				88C2CBF129C8E47600B263D5 /* WelcomePage.swift in Sources */,
 				88C2CBF329C8E48A00B263D5 /* LoginPage.swift in Sources */,
 				88C2CBBD29C8E24500B263D5 /* CarLoversApp.swift in Sources */,
@@ -724,6 +736,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"CarLovers/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -753,6 +766,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"CarLovers/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

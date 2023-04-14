@@ -100,7 +100,7 @@ struct LoginPage: View {
                             .foregroundColor(.white)
                             .font(.system(size: 18))
                             .frame(width: 170, height: 50)
-                            .background(Color.red.opacity(5))
+                            .background(Color.white.opacity(0.6))
                             .cornerRadius(10)
                     }
 
