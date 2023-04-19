@@ -106,7 +106,7 @@ struct LoginPage: View {
 
                     // Redirection
                     if loginSuccess {
-                        NavigationLink(destination: HomePage(), isActive: $redirectToHomePage) {
+                        NavigationLink(destination: CardStackView(), isActive: $redirectToHomePage) {
                             EmptyView()
                         }
                     }

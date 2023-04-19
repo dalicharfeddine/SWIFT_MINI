@@ -19,3 +19,17 @@ struct AddcarResponse: Decodable {
     let status: String
     let message: String
 }
+
+
+struct carResponse: Codable {
+    let _id: String
+    let marque: String
+    let model: String
+    let image: String
+    let user: String
+    let description: String
+    let __v: Int
+
+}
+
+

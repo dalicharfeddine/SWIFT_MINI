@@ -31,6 +31,7 @@
 		88C2CBF529C8E4A200B263D5 /* SignInPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C2CBF429C8E4A200B263D5 /* SignInPage.swift */; };
 		88C2CBF729C8E4B100B263D5 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C2CBF629C8E4B100B263D5 /* HomePage.swift */; };
 		88C2CBFA29C8E79600B263D5 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C2CBF929C8E79600B263D5 /* Api.swift */; };
+		88D10C8329EF9E5500DEABB9 /* cardStackviewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D10C8229EF9E5500DEABB9 /* cardStackviewmodel.swift */; };
 		88F1AC9229DFCEF200A0FE9B /* ForgetPswdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1AC9129DFCEF200A0FE9B /* ForgetPswdViewModel.swift */; };
 		88F1AC9429DFD2D900A0FE9B /* ForgotPasword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1AC9329DFD2D900A0FE9B /* ForgotPasword.swift */; };
 		88F1AC9829DFD9BD00A0FE9B /* resetPasswod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F1AC9729DFD9BD00A0FE9B /* resetPasswod.swift */; };
@@ -96,6 +97,7 @@
 		88C2CBF429C8E4A200B263D5 /* SignInPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPage.swift; sourceTree = "<group>"; };
 		88C2CBF629C8E4B100B263D5 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		88C2CBF929C8E79600B263D5 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		88D10C8229EF9E5500DEABB9 /* cardStackviewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cardStackviewmodel.swift; sourceTree = "<group>"; };
 		88F1AC9129DFCEF200A0FE9B /* ForgetPswdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPswdViewModel.swift; sourceTree = "<group>"; };
 		88F1AC9329DFD2D900A0FE9B /* ForgotPasword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasword.swift; sourceTree = "<group>"; };
 		88F1AC9729DFD9BD00A0FE9B /* resetPasswod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resetPasswod.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				88963F1529DE9C3C00FD122C /* ProfileViewModel.swift */,
 				88F1AC9129DFCEF200A0FE9B /* ForgetPswdViewModel.swift */,
 				884EB75029E8FF0600DAD970 /* carviewModel.swift */,
+				88D10C8229EF9E5500DEABB9 /* cardStackviewmodel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 			files = (
 				88FB9D5329CBD8C700910F92 /* PostView.swift in Sources */,
 				88963F1629DE9C3C00FD122C /* ProfileViewModel.swift in Sources */,
+				88D10C8329EF9E5500DEABB9 /* cardStackviewmodel.swift in Sources */,
 				88C2CBF529C8E4A200B263D5 /* SignInPage.swift in Sources */,
 				88B73F1629D64256002725D6 /* SignupViewModel.swift in Sources */,
 				88C2CBF729C8E4B100B263D5 /* HomePage.swift in Sources */,
