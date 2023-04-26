@@ -13,21 +13,62 @@ struct Card: View {
     @State private var translation: CGSize = .zero
     @State private var onLike: Bool = false
     @State private var onDislike: Bool = false
-    
+
     var body: some View {
+        
         ZStack {
             CarView(imageURL: car.image)
                 .cornerRadius(20)
+                .padding(.horizontal, 16)
             
-            VStack {
-                Spacer()
-                
-                .padding(20)
-            }
+            Color.clear.overlay(
+                ZStack(alignment: .top) {
+                    LinearGradient(
+                        gradient: Gradient(colors: [.clear, .black]),
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                    .frame(height: UIScreen.main.bounds.height * 0.2)
+                    
+                    HStack {
+                        Spacer()
+                        
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 100))
+                            .foregroundColor(.red)
+                            .padding(.trailing, 80)
+                            .opacity(Double(translation.width / -200))
+                            .animation(.spring())
+                            .onTapGesture {
+                                self.onDislike = true
+                                
+                            }
+                        
+                        Image(systemName: "heart.circle.fill")
+                            .font(.system(size: 100))
+                            .foregroundColor(.green)
+                            .padding(.leading, 80)
+                            .opacity(Double(translation.width / 200))
+                            .animation(.spring())
+                            .onTapGesture {
+                                self.onLike = true
+
+                            }
+                        
+                        Spacer()
+                    }
+                }
+            )
         }
-        .frame(width: UIScreen.main.bounds.width - 40, height: UIScreen.main.bounds.height * 0.7)
+        .frame(width: UIScreen.main.bounds.width - 32, height: UIScreen.main.bounds.height * 0.7)
+        .background(Color.white)
+        .cornerRadius(20)
+        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
+        .padding(.horizontal, 16)
         .offset(translation)
         .rotationEffect(.degrees(Double(translation.width / 10)))
+        .scaleEffect(onLike || onDislike ? 0.9 : 1.0)
+        .opacity(onLike || onDislike ? 0.0 : 1.0)
         .gesture(
             DragGesture()
                 .onChanged { value in
@@ -48,7 +89,6 @@ struct Card: View {
         .animation(.spring())
     }
 }
-
 
 
 struct CarView: View {
@@ -99,26 +139,30 @@ struct CardStackView: View {
                                 offset = value.translation
                             }
                             .onEnded { value in
-                                withAnimation(.spring()){ if abs(offset.width) > 100 {
-                                    if offset.width > 0 {
-                                        like()
+                                withAnimation(.spring()){
+                                    if abs(offset.width) > 100 {
+                                        if offset.width > 0 {
+                                            like()
+                                        } else {
+                                            dislike()
+                                        }
+                                        currentIndex += 1
                                     } else {
-                                        dislike()
+                                        offset = .zero
                                     }
-                                    currentIndex += 1
-                                } else {
-
-                                    offset = .zero
                                 }
-                                    print(offset)
-                                }})
+                            })
                 }
             }
             .padding(.horizontal, 20)
             
             Spacer()
             
-            
+            Button(action: {
+                viewModel.getContact()
+            }) {
+                Text("Reload")
+            }
             .padding(.bottom, 30)
         }
         .onAppear {
@@ -126,7 +170,6 @@ struct CardStackView: View {
         }
     }
     
-  
     func getScale(index: Int) -> CGFloat {
         let diff = CGFloat(index - currentIndex)
         if diff == 0 {
@@ -154,8 +197,14 @@ struct CardStackView: View {
             
             // Ajouter ici la logique pour ajouter un like
             print("Liked car: \(viewModel.cars[currentIndex].model)")
+            
+            viewModel.getContact()
+
+            viewModel.getCars()
+
         }
     }
+
 
     func dislike() {
         if abs(offset.width) > 100 {
@@ -168,14 +217,19 @@ struct CardStackView: View {
             
             // Ajouter ici la logique pour ajouter un dislike
             print("Disliked car: \(viewModel.cars[currentIndex].model)")
+            
+            // Call the getCarsForCurrentUser function to fetch new cars for the user
+            viewModel.getCars()
         }
     }
-
-
-
-
-
 }
+
+
+
+
+
+
+
 struct CardStackView_Previews: PreviewProvider {
     static var previews: some View {
         CardStackView()

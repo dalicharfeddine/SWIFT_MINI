@@ -34,4 +34,29 @@ class cardStackviewmodel: ObservableObject {
             }
         }
     }
+    
+    func getContact() {
+        guard let accessToken = UserDefaults.standard.string(forKey: "accessToken") else {
+            print("Error: Access token not found")
+            return
+        }
+
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(accessToken)",
+            "user": "user1"
+        ]
+
+      
+        AF.request("http://192.168.100.105:9091/contact/user2", method: .get, headers: headers).responseData { response in
+            switch response.result {
+            case .success:
+                print("Request succeeded")
+            case .failure(let error):
+                print("Request failed with error: \(error)")
+            }
+        }
+    }
+
+
+
 }
