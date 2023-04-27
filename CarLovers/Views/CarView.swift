@@ -15,64 +15,50 @@ struct Card: View {
     @State private var onDislike: Bool = false
 
     var body: some View {
-        
         ZStack {
             CarView(imageURL: car.image)
                 .cornerRadius(20)
                 .padding(.horizontal, 16)
             
-            Color.clear.overlay(
-                ZStack(alignment: .top) {
-                    LinearGradient(
-                        gradient: Gradient(colors: [.clear, .black]),
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                    .frame(height: UIScreen.main.bounds.height * 0.2)
-                    
-                    HStack {
-                        Spacer()
-                        
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 100))
-                            .foregroundColor(.red)
-                            .padding(.trailing, 80)
-                            .opacity(Double(translation.width / -200))
-                            .animation(.spring())
-                            .onTapGesture {
-                                self.onDislike = true
-                                
-                            }
-                        
-                        Image(systemName: "heart.circle.fill")
-                            .font(.system(size: 100))
-                            .foregroundColor(.green)
-                            .padding(.leading, 80)
-                            .opacity(Double(translation.width / 200))
-                            .animation(.spring())
-                            .onTapGesture {
-                                self.onLike = true
-
-                            }
-                        
-                        Spacer()
+            HStack {
+                Spacer()
+                
+                Image(systemName: "xmark.circle.fill")
+                    .font(.system(size: 100))
+                    .foregroundColor(.red)
+                    .padding(.trailing, 80)
+                    .opacity(Double(translation.width / -200))
+                    .animation(.spring())
+                    .onTapGesture {
+                        self.onDislike = true
                     }
-                }
-            )
+                
+                Image(systemName: "heart.circle.fill")
+                    .font(.system(size: 100))
+                    .foregroundColor(.green)
+                    .padding(.leading, 80)
+                    .opacity(Double(translation.width / 200))
+                    .animation(.spring())
+                    .onTapGesture {
+                        self.onLike = true
+                    }
+                
+                Spacer()
+            }
         }
         .frame(width: UIScreen.main.bounds.width - 32, height: UIScreen.main.bounds.height * 0.7)
         .background(Color.white)
         .cornerRadius(20)
-        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 0, y: 5)
         .padding(.horizontal, 16)
         .offset(translation)
         .rotationEffect(.degrees(Double(translation.width / 10)))
         .scaleEffect(onLike || onDislike ? 0.9 : 1.0)
-        .opacity(onLike || onDislike ? 0.0 : 1.0)
+        .opacity(onLike || onDislike ? 0.0 : 5)
         .gesture(
             DragGesture()
                 .onChanged { value in
-                    self.translation = value.translation
+                    let newTranslation = CGSize(width: value.translation.width - self.translation.width, height: value.translation.height - self.translation.height)
+                    self.translation = newTranslation
                 }
                 .onEnded { value in
                     if abs(self.translation.width) > 100 {
@@ -86,9 +72,11 @@ struct Card: View {
                     }
                 }
         )
+
         .animation(.spring())
     }
 }
+
 
 
 struct CarView: View {
@@ -115,9 +103,6 @@ struct CarView: View {
     }
 }
 
-    
-   
-
 struct CardStackView: View {
     @StateObject private var viewModel = cardStackviewmodel()
     @State private var offset = CGSize.zero
@@ -134,24 +119,33 @@ struct CardStackView: View {
                         .scaleEffect(getScale(index: index))
                         .rotationEffect(Angle(degrees: getRotation(index: index)))
                         .animation(.spring())
-                        .gesture(DragGesture()
-                            .onChanged { value in
-                                offset = value.translation
-                            }
-                            .onEnded { value in
-                                withAnimation(.spring()){
-                                    if abs(offset.width) > 100 {
-                                        if offset.width > 0 {
-                                            like()
-                                        } else {
-                                            dislike()
-                                        }
-                                        currentIndex += 1
-                                    } else {
-                                        offset = .zero
+                        .gesture(
+                            DragGesture()
+                                .onChanged { value in
+                                    let isHorizontalSwipe = abs(value.translation.width) > abs(value.translation.height)
+                                    if isHorizontalSwipe {
+                                        offset = value.translation
+                                        print("Offset: \(offset)")
                                     }
                                 }
-                            })
+                                .onEnded { value in
+                                    let isHorizontalSwipe = abs(value.translation.width) > abs(value.translation.height)
+                                    if isHorizontalSwipe {
+                                        withAnimation(.spring()) {
+                                            if abs(offset.width) > 100 {
+                                                if offset.width > 0 {
+                                                    like()
+                                                } else {
+                                                    dislike()
+                                                }
+                                                currentIndex += 1
+                                            } else {
+                                                offset = .zero
+                                            }
+                                        }
+                                    }
+                                }
+                        )
                 }
             }
             .padding(.horizontal, 20)
@@ -159,7 +153,11 @@ struct CardStackView: View {
             Spacer()
             
             Button(action: {
-                viewModel.getContact()
+                if let firstCar = viewModel.cars.first {
+                    viewModel.getContact(for: firstCar.user)
+                } else {
+                    print("Error: No cars found")
+                }
             }) {
                 Text("Reload")
             }
@@ -187,47 +185,34 @@ struct CardStackView: View {
     }
     
     func like() {
-        if abs(offset.width) > 100 {
-            // Supprimer l'élément liké de la liste
-            viewModel.cars.remove(at: currentIndex)
-            
-            if currentIndex != 0 {
-                currentIndex -= 1
-            }
-            
-            // Ajouter ici la logique pour ajouter un like
-            print("Liked car: \(viewModel.cars[currentIndex].model)")
-            
-            viewModel.getContact()
-
-            viewModel.getCars()
-
+        print("Liked car: \(viewModel.cars[currentIndex].model)")
+        let likedCar = viewModel.cars[currentIndex]
+        viewModel.cars.remove(at: currentIndex)
+        
+        if currentIndex != 0 {
+            currentIndex -= 1
         }
+        
+        if let firstCar = viewModel.cars.first {
+            viewModel.getContact(for: firstCar.user)
+        } else {
+            print("Error: No cars found")
+        }
+        
+        viewModel.getCars()
     }
-
-
+    
     func dislike() {
-        if abs(offset.width) > 100 {
-            // Supprimer l'élément disliké de la liste
-            viewModel.cars.remove(at: currentIndex)
-            
-            if currentIndex != 0 {
-                currentIndex -= 1
-            }
-            
-            // Ajouter ici la logique pour ajouter un dislike
-            print("Disliked car: \(viewModel.cars[currentIndex].model)")
-            
-            // Call the getCarsForCurrentUser function to fetch new cars for the user
-            viewModel.getCars()
+        print("Disliked car: \(viewModel.cars[currentIndex].model)")
+        viewModel.cars.remove(at: currentIndex)
+        
+        if currentIndex != 0 {
+            currentIndex -= 1
         }
+        
+        viewModel.getCars()
     }
 }
-
-
-
-
-
 
 
 struct CardStackView_Previews: PreviewProvider {
