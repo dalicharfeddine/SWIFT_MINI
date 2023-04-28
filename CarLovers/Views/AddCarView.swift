@@ -10,7 +10,7 @@ struct AddCarView: View {
         let textLimit = 255 //Your limit
         
         var body: some View {
-            NavigationView {
+            
                 VStack {
                     TextField("Marque!", text: $carViewModel.marque, axis: .vertical)
                         .textFieldStyle(.plain)
@@ -91,19 +91,18 @@ struct AddCarView: View {
                         }
 
                     }
-                    .padding()
-                    .background(Color.gray)
-                    .foregroundColor(Color.white)
-                    .cornerRadius(5)
-                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
-                    .padding(.bottom, 20)
+                    .padding(.vertical, 10)
+                    .padding(.horizontal, 20)
+                    .background(Color.purple)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
                 }
                  
                  
                 .navigationBarTitle("Add Car", displayMode: .inline)
             }
         }
-    }
+   
 
 struct ImagePicker: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode

@@ -9,58 +9,44 @@ import SwiftUI
 struct PostView: View {
     @State private var isLiked = false
     
+    @ObservedObject var PostVieModel = PostViewModel()
+
     var body: some View {
-        VStack {
-            HStack {
-                Text("DAli DAli")
-                    .font(.headline)
-                    .padding(.leading, 16)
-                Spacer()
+        ZStack {
+            ScrollView(.vertical, showsIndicators: false) {
+              
+                LazyVStack(alignment:.center)  {
+                                ForEach(PostVieModel.posts, id: \.self) { post in
+                                    postCell(post:post)
+                                    
+                    
+                                        
+                                }
+                            }.onAppear{
+                                PostVieModel.getPosts()
+                            }
+                            .frame(maxWidth: .infinity,maxHeight: .infinity)
+                
             }
             
-            Rectangle()
-                .frame(height: 5)
-                .foregroundColor(Color.gray)
-            
-            HStack {
-                Image("bmw")
-                    .resizable()
-                    .frame(width: 100, height: 100)
-                    .padding(.leading, 16)
-                
-                VStack(alignment: .leading) {
-                    Text("titre")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.black)
-                        .padding(.top, 28)
-                        .padding(.leading, 8)
-                    Text("description")
-                        .font(.subheadline)
-                        .foregroundColor(Color.black)
-                        .padding(.top, 4)
-                        .padding(.leading, 8)
-                    
-                }
-                
+            VStack {
                 Spacer()
                 
-                Button(action: {
-                    isLiked.toggle()
-                }, label: {
-                    Image(systemName: isLiked ? "heart.fill" : "heart")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(isLiked ? Color.red : Color.black)
-                })
-                .padding(.trailing, 16)
-                .padding(.bottom, 4)
+                HStack {
+                    Spacer()
+                    
+                    NavigationLink(destination: AddPostPage()) {
+                        Image(systemName: "plus")
+                            .font(.system(size: 24, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(width: 70, height: 70)
+                            .background(Color.purple)
+                            .cornerRadius(35)
+                            .padding()
+                    }
+                }
             }
         }
-        .padding(10)
-        .background(Color.white)
-        .cornerRadius(5)
-        .shadow(radius: 3)
     }
 }
 
@@ -69,5 +55,3 @@ struct Post_Previews: PreviewProvider {
         PostView()
     }
 }
-
-

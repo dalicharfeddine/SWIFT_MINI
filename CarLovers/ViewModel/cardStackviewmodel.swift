@@ -9,13 +9,17 @@ import Alamofire
 
 class cardStackviewmodel: ObservableObject {
     @Published var cars: [carResponse] = []
-    
+    init() {
+        
+        getCars()
+    }
     func getCars() {
+        
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "accessToken") ?? "")",
         ]
         
-        AF.request("http://192.168.100.105:9091/car", headers: headers).responseData { response in
+        AF.request("http://172.17.1.23:9091/car", headers: headers).responseData { response in
             switch response.result {
             case .success(let data):
                 do {
@@ -25,7 +29,7 @@ class cardStackviewmodel: ObservableObject {
                     for car in self.cars {
                         print(car.marque)
                     }
-
+                    
                 } catch {
                     print("Failed to decode car response: \(error)")
                 }
@@ -34,7 +38,6 @@ class cardStackviewmodel: ObservableObject {
             }
         }
     }
-    
     func getContact(for user: String) {
         guard let accessToken = UserDefaults.standard.string(forKey: "accessToken") else {
             print("Error: Access token not found")
@@ -45,7 +48,7 @@ class cardStackviewmodel: ObservableObject {
             "Authorization": "Bearer \(accessToken)"
         ]
 
-        let url = "http://192.168.100.105:9091/contact/\(user)"
+        let url = "http://172.17.1.23:9091/contact/\(user)"
 
         AF.request(url, method: .post, encoding: JSONEncoding.default, headers: headers).responseData { response in
             switch response.result {

@@ -10,16 +10,53 @@ import SwiftUI
 struct Card: View {
     let car: carResponse
     
-    @State private var translation: CGSize = .zero
-    @State private var onLike: Bool = false
-    @State private var onDislike: Bool = false
+    @State  var translation: CGSize = .zero
+    @State  var onLike: Bool = false
+    @State  var onDislike: Bool = false
+    @ObservedObject  var viewModel : cardStackviewmodel
 
     var body: some View {
-        ZStack {
+        ZStack() {
             CarView(imageURL: car.image)
+                .scaledToFit()
                 .cornerRadius(20)
                 .padding(.horizontal, 16)
-            
+            VStack{
+                Spacer()
+                HStack{
+                    VStack(alignment: .leading) {
+                        Text(car.marque)
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
+                            .multilineTextAlignment(.leading)
+                        
+                            .cornerRadius(20)
+                        
+                        Text(car.model)
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
+                            .multilineTextAlignment(.leading)
+                        
+                            .cornerRadius(20)
+                        
+                        Text(car.description)
+                            .font(.body)
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.leading)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
+                            .cornerRadius(20)
+                    }
+                    Spacer()
+                }
+                
+            }.padding(70)
+        
             HStack {
                 Spacer()
                 
@@ -51,7 +88,7 @@ struct Card: View {
         .cornerRadius(20)
         .padding(.horizontal, 16)
         .offset(translation)
-        .rotationEffect(.degrees(Double(translation.width / 10)))
+        .rotationEffect(.degrees(Double(translation.width / 100)))
         .scaleEffect(onLike || onDislike ? 0.9 : 1.0)
         .opacity(onLike || onDislike ? 0.0 : 5)
         .gesture(
@@ -64,7 +101,11 @@ struct Card: View {
                     if abs(self.translation.width) > 100 {
                         if self.translation.width > 0 {
                             self.onLike = true
+
+                            viewModel.getContact(for: car.user)
+                            
                         } else {
+                            
                             self.onDislike = true
                         }
                     } else {
@@ -74,7 +115,12 @@ struct Card: View {
         )
 
         .animation(.spring())
-    }
+        
+          }
+    
+                       
+                    
+    
 }
 
 
@@ -104,62 +150,52 @@ struct CarView: View {
 }
 
 struct CardStackView: View {
-    @StateObject private var viewModel = cardStackviewmodel()
+    @StateObject  var viewModel = cardStackviewmodel()
     @State private var offset = CGSize.zero
     @State private var currentIndex = 0
     
     var body: some View {
         VStack {
             ZStack {
-                ForEach(viewModel.cars.indices.reversed(), id: \.self) { index in
+                
+                ForEach(viewModel.cars.indices, id: \.self) {
+                    index in
+                    
                     let car = viewModel.cars[index]
-                    Card(car: car)
+                    Card(car: car, viewModel:viewModel)
                         .offset(y: CGFloat(index - currentIndex) * 15)
                         .offset(x: offset.width, y: offset.height)
                         .scaleEffect(getScale(index: index))
                         .rotationEffect(Angle(degrees: getRotation(index: index)))
                         .animation(.spring())
-                        .gesture(
-                            DragGesture()
-                                .onChanged { value in
-                                    let isHorizontalSwipe = abs(value.translation.width) > abs(value.translation.height)
-                                    if isHorizontalSwipe {
-                                        offset = value.translation
-                                        print("Offset: \(offset)")
-                                    }
-                                }
-                                .onEnded { value in
-                                    let isHorizontalSwipe = abs(value.translation.width) > abs(value.translation.height)
-                                    if isHorizontalSwipe {
-                                        withAnimation(.spring()) {
-                                            if abs(offset.width) > 100 {
-                                                if offset.width > 0 {
-                                                    like()
-                                                } else {
-                                                    dislike()
-                                                }
-                                                currentIndex += 1
-                                            } else {
-                                                offset = .zero
-                                            }
-                                        }
-                                    }
-                                }
-                        )
+                    
+                    
                 }
             }
             .padding(.horizontal, 20)
             
             Spacer()
             
-            Button(action: {
-                if let firstCar = viewModel.cars.first {
-                    viewModel.getContact(for: firstCar.user)
-                } else {
-                    print("Error: No cars found")
+            HStack(spacing: 30) {
+                Button(action: {
+                    dislike()
+                }) {
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(.red)
                 }
-            }) {
-                Text("Reload")
+                
+                Button(action: {
+                    like()
+                }) {
+                    Image(systemName: "heart")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(.green)
+                }
             }
             .padding(.bottom, 30)
         }
@@ -183,34 +219,28 @@ struct CardStackView: View {
         let diff = Double(index - currentIndex)
         return diff * 5.0
     }
-    
+
+
     func like() {
-        print("Liked car: \(viewModel.cars[currentIndex].model)")
-        let likedCar = viewModel.cars[currentIndex]
-        viewModel.cars.remove(at: currentIndex)
+        viewModel.cars.remove(at:currentIndex)
+
         
-        if currentIndex != 0 {
-            currentIndex -= 1
-        }
         
-        if let firstCar = viewModel.cars.first {
-            viewModel.getContact(for: firstCar.user)
-        } else {
-            print("Error: No cars found")
-        }
+            if let firstCar = viewModel.cars.first {
+                viewModel.getContact(for: firstCar.user)
+            } else {
+                print("Error: No cars found")
+            }
         
-        viewModel.getCars()
+
     }
     
     func dislike() {
         print("Disliked car: \(viewModel.cars[currentIndex].model)")
-        viewModel.cars.remove(at: currentIndex)
-        
-        if currentIndex != 0 {
-            currentIndex -= 1
-        }
-        
-        viewModel.getCars()
+        viewModel.cars.remove(at:currentIndex)
+       
+        print(currentIndex)
+
     }
 }
 
