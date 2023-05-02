@@ -19,7 +19,7 @@ class cardStackviewmodel: ObservableObject {
             "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "accessToken") ?? "")",
         ]
         
-        AF.request("http://172.17.1.23:9091/car", headers: headers).responseData { response in
+        AF.request("http://172.17.2.212:9091/car", headers: headers).responseData { response in
             switch response.result {
             case .success(let data):
                 do {
@@ -48,7 +48,7 @@ class cardStackviewmodel: ObservableObject {
             "Authorization": "Bearer \(accessToken)"
         ]
 
-        let url = "http://172.17.1.23:9091/contact/\(user)"
+        let url = "http://172.17.2.212:9091/contact/\(user)"
 
         AF.request(url, method: .post, encoding: JSONEncoding.default, headers: headers).responseData { response in
             switch response.result {

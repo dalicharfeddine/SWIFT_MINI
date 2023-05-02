@@ -16,7 +16,7 @@ class ProfileViewModel: ObservableObject {
     @Published var errorMessage: String = ""
     
     func fetchUser() {
-        let url = "http://172.17.1.23:9091/user/profile"
+        let url = "http://172.17.2.212:9091/user/profile"
         
         guard let accessToken = UserDefaults.standard.string(forKey: userDefaultsKey) else {
             self.errorMessage = "Access Token not found"
@@ -41,7 +41,7 @@ class ProfileViewModel: ObservableObject {
     }
     
     func updateUser(request: UpdateUserRequest, completion: @escaping () -> Void) {
-        let url = "http://192.168.167.73:9091/user/profile"
+        let url = "http://172.17.2.212:9091/user/profile"
         
         guard let accessToken = UserDefaults.standard.string(forKey: userDefaultsKey) else {
             self.errorMessage = "Access Token not found"

@@ -11,9 +11,12 @@ class LoginViewModel: ObservableObject {
     
     var loginRequest: LoginRequest?
     var errorMessage: String?
+    let accessTokenKey = "accessToken"
+    let userIdKey = "userId"
+
     
     func login(request: LoginRequest, completion: @escaping (Result<LoginResponse, Error>) -> ()) -> DataRequest {
-        let url = "http://172.17.1.23:9091/user/login"
+        let url = "http://172.17.2.212:9091/user/login"
         
         do {
             let encodedRequest = try JSONEncoder().encode(request)
@@ -31,10 +34,11 @@ class LoginViewModel: ObservableObject {
                                 let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
                                 let user = loginResponse.user // Utilisez cette ligne pour récupérer toutes les informations sur l'utilisateur
                                 
-                                // Save access token to UserDefaults
-                                UserDefaults.standard.set(loginResponse.accessToken, forKey: userDefaultsKey)
-                                
+                                UserDefaults.standard.set(loginResponse.accessToken, forKey: self.accessTokenKey)
+                                UserDefaults.standard.set(loginResponse.user._id, forKey: self.userIdKey)
                                 completion(.success(loginResponse))
+                                print(UserDefaults.standard.dictionaryRepresentation())
+
                             } catch {
                                 print(error)
                                 completion(.failure(error))

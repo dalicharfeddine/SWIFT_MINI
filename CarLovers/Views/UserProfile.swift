@@ -103,7 +103,7 @@ struct UserProfile: View {
         .edgesIgnoringSafeArea(.bottom)
         
         .sheet(isPresented: $showingMatches, content: {
-            MatchesView()
+            MatchView()
         })
         .sheet(isPresented: $showingEvents, content: {
             EventsView()
@@ -137,39 +137,6 @@ struct UserProfile: View {
 }
 
 
-struct MatchesView: View {
-    var body: some View {
-        VStack {
-            // List of matched users
-            Text("Matches")
-                .font(.title)
-                .fontWeight(.bold)
-            
-            List {
-                Text("Matched User 1")
-                Text("Matched User 2")
-                Text("Matched User 3")
-            }
-            
-            // Close button
-            Button(action: {
-                dismiss()
-            }, label: {
-                Text("Close")
-                    .foregroundColor(.white)
-                    .font(.headline)
-            })
-            .frame(width: 200, height: 50)
-            .background(Color.red)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .padding()
-        }
-    }
-    
-    private func dismiss() {
-        // Dismiss the matches view
-    }
-}
 struct EventsView: View {
     var body: some View {
         VStack {
