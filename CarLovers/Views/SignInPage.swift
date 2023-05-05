@@ -14,6 +14,7 @@ import SwiftUI
         @State private var phoneNumber = ""
         @State private var email = ""
         @State private var password = ""
+        @State private var adresse = ""
         @State private var birthDate = Date()
         @State private var showDatePicker = false
             
@@ -78,6 +79,14 @@ import SwiftUI
                             .accentColor(.white)
                             .font(.system(size: 16, weight: .medium))
                             .textContentType(.name)
+                        TextField("adresse", text: $adresse)
+                            .padding()
+                             .background(Color.gray.opacity(0.9))
+                             .cornerRadius(10)
+                            .foregroundColor(.white)
+                            .accentColor(.white)
+                            .font(.system(size: 16, weight: .medium))
+                            .textContentType(.name)
                         
                         SecureField("Password", text: $password)
                             .padding()
@@ -132,7 +141,7 @@ import SwiftUI
                             let dateFormatter = DateFormatter()
                             dateFormatter.dateFormat = "yyyy-MM-dd"
                             let birthDateString = dateFormatter.string(from: birthDate)
-                            let request = SignupRequest(username: fullName, email: email, datedenaissance: birthDateString, numero: phoneNumber, password: password)
+                            let request = SignupRequest(username: fullName, email: email, datedenaissance: birthDateString, numero: phoneNumber,adresse: adresse , password: password)
                             
                             viewModel.signup(request: request) { result in
                                 switch result {

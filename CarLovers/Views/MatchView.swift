@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import MapKit
+
 
 struct MatchView: View {
+    let user : User
+
     @StateObject var viewModel = ContactsListViewModel()
     let userId = UserDefaults.standard.string(forKey: "userId")
 
@@ -18,7 +22,7 @@ struct MatchView: View {
 
                 let username = (contact.user1._id == userId) ? contact.user2.username : contact.user1.username
                 
-                NavigationLink(destination: UserDetailsView(username: username ?? "")) {
+                NavigationLink(destination: UserDetailsView(username: username ?? "", user:user )) {
                     Text(username ?? "")
                 }
             }
@@ -43,56 +47,62 @@ struct MatchView: View {
 
 struct UserDetailsView: View {
     let username: String
+    var user : User
     @StateObject var viewModel = UserDetailsViewModel()
+    @State private var region = MKCoordinateRegion()
     
+    let gridLayout = [GridItem(.flexible()), GridItem(.flexible())]
+
     var body: some View {
-        VStack(alignment: .leading) {
-            if let user = viewModel.user {
-                Text("Username")
-                    .font(.title)
-                    .foregroundColor(.white)
-                    .padding(.bottom)
+        ScrollView {
+            LazyVGrid(columns: gridLayout) {
+                if let user = viewModel.user {
+                    Text("Username")
+                        .font(.title)
+                        .foregroundColor(.white)
+                        .padding(.bottom)
+                    
+                    Text(user.username)
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding(.bottom)
+                    Text("Email")
+                        .font(.headline)
+                        .foregroundColor(.black)
+                    Text(user.email)
+                        .font(.subheadline)
+                        .foregroundColor(.black)
+                    
+                    Text("Phone number")
+                        .font(.headline)
+                        .foregroundColor(.black)
+                    Text(String(user.numero))
+                        .font(.subheadline)
+                        .foregroundColor(.black)
+                    
+                    Text("Address")
+                        .font(.headline)
+                        .foregroundColor(.black)
+                    Text(user.adresse)
+                        .font(.subheadline)
+                        .foregroundColor(.black)
+                }
                 
-                Text(user.username)
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding(.bottom)
-                
-                Text("Email")
-                    .font(.title)
-                    .foregroundColor(.white)
-                    .padding(.bottom)
-                
-                Text(user.email)
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding(.bottom)
-                
-                Text("Phone number")
-                    .font(.title)
-                    .foregroundColor(.white)
-                    .padding(.bottom)
-                
-                Text(String(user.numero))
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding(.bottom)
-                
-            } else {
-                ProgressView()
+            }
+            .padding()
+            Map(coordinateRegion: $region, annotationItems: [user]) { movie in
+                MapPin(coordinate: region.center,tint: .red)
+            }
+            .frame(height: 200)
+            .onAppear {
+                setRegion()
             }
         }
-        .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(
-            LinearGradient(
-                gradient: Gradient(colors: [.purple, .black]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-        )
+        .background(Color.white)
         .navigationBarTitle("User details", displayMode: .inline)
         .onAppear {
+            
             viewModel.fetchUserDetails(username: username) { result in
                 switch result {
                 case .success:
@@ -103,13 +113,28 @@ struct UserDetailsView: View {
             }
         }
     }
-}
 
+    private func setRegion() {
+        let geocoder = CLGeocoder()
+      /*  if let user = viewModel.user {*/
+
+        geocoder.geocodeAddressString(user.adresse) { placemarks, error in
+            guard let placemark = placemarks?.first, let location = placemark.location else {
+                return
+            }
+       
+            region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+        } }
+    }
+
+
+
+ 
 
     
-    struct MatchView_Previews: PreviewProvider {
-        static var previews: some View {
-            MatchView()
-        }
-    }
+//    struct MatchView_Previews: PreviewProvider {
+//        static var previews: some View {
+//            MatchView(user: user)
+//        }
+//    }
 

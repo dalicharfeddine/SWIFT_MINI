@@ -16,14 +16,28 @@ struct UserProfile: View {
     @State private var showingUpdateProfileView = false
     
     var body: some View {
+        
         VStack(alignment: .leading, spacing: 5){
+            Button(action: {
+                logout()
+            }) {
+                Image(systemName: "power")
+                    .foregroundColor(.black)
+                    .font(.system(size: 14))
+            }
+            .padding(5)
+            .background(Color.white)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .alignmentGuide(.trailing) { _ in
+                10
+            }
+
             HStack {
                 Image("bmw")
                     .resizable()
                     .scaledToFit()
                     .clipShape(Circle())
                     .frame(width: 70, height: 70)
-                
                 VStack(alignment: .leading, spacing: 5) {
                     if let username = viewModel.user?.username {
                         Text(username)
@@ -40,19 +54,8 @@ struct UserProfile: View {
                 }
                 .padding(.leading)
             }
-            .padding(.horizontal)
-            
-                 Button(action: {
-                     logout()
-                 }, label: {
-                     Text("Logout")
-                         .foregroundColor(.white)
-                         .font(.headline)
-                 })
-                 .frame(maxWidth: .infinity)
-                 .frame(height: 50)
-                 .background(Color.red)
-                 .clipShape(RoundedRectangle(cornerRadius: 10))
+            .padding(40)
+
             
             Button(action: {
                            viewModel.fetchUser()
@@ -60,15 +63,15 @@ struct UserProfile: View {
                        }, label: {
                            Text("Update Profile")
                                .foregroundColor(.white)
-                               .font(.headline)
+                               .font(.system(size: 20))
                        })
                        .sheet(isPresented: $showingUpdateProfileView) {
                            UpdateProfile(viewModel: viewModel)
                        }
                        .frame(maxWidth: .infinity)
                        .frame(height: 50)
-                       .background(Color.blue)
-                       .clipShape(RoundedRectangle(cornerRadius: 10))
+                       .background(Color.gray.opacity(0.6))
+                       .clipShape(RoundedRectangle(cornerRadius: 30))
             Spacer();
 
             // Match and Event buttons
@@ -82,7 +85,7 @@ struct UserProfile: View {
                 })
                 .frame(maxWidth: .infinity)
                 .frame(height: 50)
-                .background(Color.green)
+                .background(Color.purple)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 
                 Button(action: {
@@ -94,7 +97,7 @@ struct UserProfile: View {
                 })
                 .frame(maxWidth: .infinity)
                 .frame(height: 50)
-                .background(Color.blue)
+                .background(Color.purple)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             }
             .padding(.horizontal)
@@ -103,15 +106,16 @@ struct UserProfile: View {
         .edgesIgnoringSafeArea(.bottom)
         
         .sheet(isPresented: $showingMatches, content: {
-            MatchView()
+            MatchView(user:viewModel.user!)
         })
         .sheet(isPresented: $showingEvents, content: {
-            EventsView()
+            EventView()
         })
         .onAppear {
             viewModel.fetchUser()
             viewModel.fetchUser()
         }
+        Spacer()
 
 
 
@@ -137,39 +141,6 @@ struct UserProfile: View {
 }
 
 
-struct EventsView: View {
-    var body: some View {
-        VStack {
-            // List of matched users
-            Text("Matches")
-                .font(.title)
-                .fontWeight(.bold)
-            
-            List {
-                Text("EVENT User 1")
-                Text("EVENT User 2")
-                Text("EVENT User 3")
-            }
-            
-            // Close button
-            Button(action: {
-                dismiss()
-            }, label: {
-                Text("Close")
-                    .foregroundColor(.white)
-                    .font(.headline)
-            })
-            .frame(width: 200, height: 50)
-            .background(Color.red)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .padding()
-        }
-    }
-    
-    private func dismiss() {
-        // Dismiss the matches view
-    }
-}
 
 struct UserProfile_Previews: PreviewProvider {
     static var previews: some View {

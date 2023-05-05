@@ -23,6 +23,7 @@ struct SignupRequest: Encodable {
     let email: String
     let datedenaissance: String
     let numero: String
+    let adresse: String
     let role: String="user"
     let password: String
 }
@@ -47,21 +48,25 @@ struct LoginResponse: Decodable {
 }
 
 
-struct User: Decodable {
+class User: Decodable, Identifiable {
     let _id: String
     let username: String
     let email: String
     let role: String
     let datedenaissance: String
     let numero: Int
+    let adresse: String
     let password: String
     let __v: Int
+    
 }
+
 
 struct UpdateUserRequest: Encodable {
     let username: String?
     let email: String?
     let datedenaissance: String?
+    let adresse: String
     let numero: String?
 }
 

@@ -1,20 +1,27 @@
 //
-//  UserDetailsViewModel.swift
+//  ContactViewModel.swift
 //  CarLovers
 //
 //  Created by DaliCharf on 2/5/2023.
 //
-import Alamofire
+
 import Foundation
 
-class UserDetailsViewModel: ObservableObject {
-    @Published var user: userContact?
-    @Published var users: [userContact] = []
+import Alamofire
 
-    func fetchUserDetails(username: String, completion: @escaping (Result<Void, Error>) -> Void) {
-       
-        let url = "http://172.17.1.173:9091/user/\(username)"
-        AF.request(url)
+class ListEventViewModel: ObservableObject {
+    @Published var contacts: [eventResponse] = []
+
+    func fetchEvents(userId: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        
+
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "accessToken") ?? "")",
+            "Content-Type": "application/json"
+        ]
+        let url = "http://172.17.1.173:9091/event"
+
+        AF.request(url, headers: headers)
             .validate()
             .responseJSON { [weak self] response in
                 switch response.result {
@@ -24,9 +31,9 @@ class UserDetailsViewModel: ObservableObject {
                         let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
                         let decoder = JSONDecoder()
                         decoder.keyDecodingStrategy = .convertFromSnakeCase
-                        let user = try decoder.decode(userContact.self, from: jsonData)
+                        let contacts = try decoder.decode([eventResponse].self, from: jsonData)
                         DispatchQueue.main.async {
-                            self?.user = user
+                            self?.contacts = contacts
                             completion(.success(()))
                         }
                     } catch {

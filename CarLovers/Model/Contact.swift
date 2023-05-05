@@ -8,18 +8,19 @@
 import Foundation
 
 
-struct
-Contact: Decodable,Hashable {
+struct Contact: Decodable, Hashable {
     let _id: String
     let user1: userContact
     let user2: userContact
     let match: Bool
     let __v: Int
-
 }
-struct userContact: Decodable,Hashable {
+
+struct userContact: Decodable, Hashable {
     let _id: String
     let username: String
     let email: String
+    let adresse: String
     let numero: Int
 }
+

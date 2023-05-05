@@ -14,11 +14,12 @@ class ProfileViewModel: ObservableObject {
     
     @Published var user: User?
     @Published var errorMessage: String = ""
-    
+  
     func fetchUser() {
-        let url = "http://172.17.2.212:9091/user/profile"
+        let url = "http://172.17.1.173:9091/user/profile"
         
-        guard let accessToken = UserDefaults.standard.string(forKey: userDefaultsKey) else {
+        guard let accessToken = UserDefaults.standard.string(forKey: "accessToken") else {
+            print(UserDefaults.standard)
             self.errorMessage = "Access Token not found"
             return
         }
@@ -26,7 +27,7 @@ class ProfileViewModel: ObservableObject {
 
         
         let headers: HTTPHeaders = [            "Authorization": "Bearer \(accessToken)",            "Content-Type": "application/json"        ]
-        
+        print("dali")
         AF.request(url, headers: headers)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -37,11 +38,12 @@ class ProfileViewModel: ObservableObject {
                 case .failure(let error):
                     self.errorMessage = error.localizedDescription
                 }
+                print(self.user)
             }
     }
     
     func updateUser(request: UpdateUserRequest, completion: @escaping () -> Void) {
-        let url = "http://172.17.2.212:9091/user/profile"
+        let url = "http://172.17.1.173:9091/user/profile"
         
         guard let accessToken = UserDefaults.standard.string(forKey: userDefaultsKey) else {
             self.errorMessage = "Access Token not found"

@@ -22,7 +22,7 @@ struct HomePage: View {
                         .tag(1)
                     AddCarView()
                         .tag(2)
-                    AddCarView()
+                    EventList()
                         .tag(3)
                     UserProfile()
                         .tag(4)

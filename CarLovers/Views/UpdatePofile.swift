@@ -4,6 +4,7 @@ struct UpdateProfile: View {
     @State private var username: String = ""
     @State private var email: String = ""
     @State private var dateOfBirth: Date = Date()
+    @State private var adresse: String = ""
     @State private var phoneNumber: String = ""
     @ObservedObject var viewModel: ProfileViewModel
 
@@ -15,11 +16,14 @@ struct UpdateProfile: View {
         let email = userDefaults.string(forKey: "email") ?? ""
         let dateOfBirth = userDefaults.object(forKey: "dateOfBirth") as? Date ?? Date()
         let phoneNumber = userDefaults.string(forKey: "phoneNumber") ?? ""
+        let adresse = userDefaults.string(forKey: "adresse") ?? ""
 
         _username = State(initialValue: username)
         _email = State(initialValue: email)
         _dateOfBirth = State(initialValue: dateOfBirth)
         _phoneNumber = State(initialValue: phoneNumber)
+        _adresse = State(initialValue: adresse)
+
     }
 
     var body: some View {
@@ -34,11 +38,12 @@ struct UpdateProfile: View {
                             TextField("Email", text: $email)
                             DatePicker("Date of Birth", selection: $dateOfBirth, displayedComponents: .date)
                             TextField("Phone Number", text: $phoneNumber)
+                            TextField("Adresse", text: $adresse)
                         }
 
                         Section {
                             Button("Save Changes") {
-                                let request = UpdateUserRequest(username: username, email: email, datedenaissance: formatDate(dateOfBirth), numero: phoneNumber)
+                                let request = UpdateUserRequest(username: username, email: email, datedenaissance: formatDate(dateOfBirth), adresse: adresse, numero: phoneNumber)
                                 viewModel.updateUser(request: request) {
                                     // handle completion, e.g.:
                                     print("User updated successfully!")
