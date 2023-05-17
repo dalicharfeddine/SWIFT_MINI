@@ -7,55 +7,76 @@
 
 import SwiftUI
 
-
-
 struct HomePage: View {
-    @State private var selectedTab = 0
+    @State private var selectedTab: TabBarItem = .house
 
     var body: some View {
         NavigationView {
             VStack {
                 TabView(selection: $selectedTab) {
                     PostView()
-                        .tag(0)
+                        .tag(TabBarItem.house)
                     CardStackView()
-                        .tag(1)
+                        .tag(TabBarItem.person)
                     AddCarView()
-                        .tag(2)
+                        .tag(TabBarItem.heart)
                     EventList()
-                        .tag(3)
+                        .tag(TabBarItem.plusCircle)
                     UserProfile()
-                        .tag(4)
+                        .tag(TabBarItem.profile)
                 }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .frame(height:700) // Increase the height of the TabView
+                .background(Color.white) // set the background of the TabView to white
 
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                
                 HStack(alignment: .bottom) {
-                    Tab(imageName: "house.fill", tag: 0, selectedTab: $selectedTab)
-                    Tab(imageName: "car.fill", tag: 1, selectedTab: $selectedTab)
-                    Tab(imageName: "plus.circle.fill", tag: 2, selectedTab: $selectedTab)
-                    Tab(imageName: "calendar.circle.fill", tag: 3, selectedTab: $selectedTab)
-                    Tab(imageName: "person.crop.circle.fill", tag: 4, selectedTab: $selectedTab)
+                    ForEach(TabBarItem.allCases, id: \.self) { item in
+                        TabBarItemView(item: item, isSelected: selectedTab == item) { selected in
+                            selectedTab = selected
+                        }
+                    }
                 }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .padding(.horizontal) // Add some horizontal padding for the tabs
+                .background(Color.purple) // set the background of the tab bar to purple
+                .cornerRadius(20) // Round the corners of the tab bar
+                .shadow(radius: 40) // Add a drop shadow to the tab bar
+                .padding() // Add some spacing between the TabView and tab bar
             }
             .edgesIgnoringSafeArea(.top)
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
         }
     }
 }
 
-struct Tab: View {
-    let imageName: String
-    let tag: Int
-    @Binding var selectedTab: Int
+struct TabBarItemView: View {
+    let item: TabBarItem
+    let isSelected: Bool
+    let action: (TabBarItem) -> Void
     
     var body: some View {
-        Image(systemName: imageName)
-            .foregroundColor(selectedTab == tag ? .blue : .gray)
-            .frame(maxWidth: .infinity)
+        Image(systemName: item.imageName)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 35)
+            .foregroundColor(isSelected ? .white : Color.white.opacity(0.7)) // set the color of the icon
+            .frame(maxWidth: .infinity, maxHeight: 50) // Increase the size of the tabs
+            .contentShape(Rectangle()) // Make the entire tab area tappable
             .onTapGesture {
-                selectedTab = tag
+                action(item)
             }
+    }
+}
+
+enum TabBarItem: String, CaseIterable {
+    case house = "house"
+    case person = "car"
+    case heart = "plus.circle"
+    case plusCircle = "map"
+    case profile = "person.circle"
+    
+    var imageName: String {
+        self.rawValue
     }
 }
 

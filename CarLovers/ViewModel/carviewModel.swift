@@ -25,7 +25,7 @@ class carviewModel: ObservableObject {
             multipartFormData.append(self.model.data(using: .utf8)!, withName: "model")
             multipartFormData.append(self.description.data(using: .utf8)!, withName: "description")
             print(self.imageData)
-        }, to: "http://172.17.1.173:9091/car", method: .post, headers: headers)
+        }, to: "\(Baseurl)/car", method: .post, headers: headers)
         .validate()
         .responseDecodable(of: AddcarResponse.self) { response in
             switch response.result {

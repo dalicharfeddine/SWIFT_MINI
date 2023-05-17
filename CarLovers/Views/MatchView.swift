@@ -4,7 +4,6 @@
 //
 //  Created by DaliCharf on 2/5/2023.
 //
-
 import SwiftUI
 import MapKit
 
@@ -126,15 +125,4 @@ struct UserDetailsView: View {
             region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
         } }
     }
-
-
-
- 
-
-    
-//    struct MatchView_Previews: PreviewProvider {
-//        static var previews: some View {
-//            MatchView(user: user)
-//        }
-//    }
 

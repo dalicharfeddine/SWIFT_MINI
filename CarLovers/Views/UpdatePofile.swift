@@ -7,6 +7,8 @@ struct UpdateProfile: View {
     @State private var adresse: String = ""
     @State private var phoneNumber: String = ""
     @ObservedObject var viewModel: ProfileViewModel
+    @Environment(\.presentationMode) var presentationMode
+
 
     init(viewModel: ProfileViewModel) {
         self.viewModel = viewModel
@@ -51,10 +53,17 @@ struct UpdateProfile: View {
                             }
                         }
                     }
-                    if !viewModel.errorMessage.isEmpty {
-                        Text(viewModel.errorMessage)
-                            .foregroundColor(.red)
-                    }
+                    Button(action: {
+                                         logout()
+                                     }, label: {
+                                         Text("Logout")
+                                             .foregroundColor(.white)
+                                             .font(.headline)
+                                     })
+                                     .frame(maxWidth: .infinity)
+                                     .frame(height: 50)
+                                     .background(Color.red)
+                                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
             }
             .navigationTitle("Edit Profile")
@@ -65,6 +74,23 @@ struct UpdateProfile: View {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter.string(from: date)
+    }
+    private func logout() {
+        // Remove the saved user information
+        UserDefaults.standard.removeObject(forKey: "accessToken")
+
+        // Present the login view wrapped in a NavigationView
+        let loginView = LoginPage()
+        let loginViewWithNavigation = NavigationView { loginView }
+        UIApplication.shared.windows.first?.rootViewController = UIHostingController(rootView: loginViewWithNavigation)
+
+        // Dismiss the current view
+        dismiss()
+    }
+
+    private func dismiss() {
+        // Dismiss the view
+        presentationMode.wrappedValue.dismiss()
     }
 }
 

@@ -13,31 +13,41 @@ struct AddCarView: View {
             
                 VStack {
                     TextField("Marque!", text: $carViewModel.marque, axis: .vertical)
+                        .font(.custom("Avenir Next", size: 18))
                         .textFieldStyle(.plain)
                         .multilineTextAlignment(.leading)
                         .frame(minHeight: 100)
                         .lineLimit(5...10)
                         .padding(5)
-
+                        .background(Color.white)
+                        .cornerRadius(10)
                     
                     TextField("Model!", text: $carViewModel.model, axis: .vertical)
+                        .font(.custom("Avenir Next", size: 18))
                         .textFieldStyle(.plain)
                         .multilineTextAlignment(.leading)
                         .frame(minHeight: 100)
                         .lineLimit(5...10)
                         .padding(5)
+                        .background(Color.white)
+                        .cornerRadius(10)
 
                     TextField("Description!", text: $carViewModel.description, axis: .vertical)
                                       .textFieldStyle(.plain)
                                       .multilineTextAlignment(.leading)
                                       .frame(minHeight: 100)
                                       .lineLimit(5...10)
+                                      .font(.custom("Avenir Next", size: 18))
                                       .padding(5)
-                                  
+                                      .background(Color.white)
+                                      .cornerRadius(10)
+                                     
                     if let image = self.image {
                         Image(uiImage: image)
                             .resizable()
                             .scaledToFill()
+                            .frame(maxWidth: .infinity, maxHeight: 200)
+                            .clipped()
                     }
 
                     HStack {
@@ -64,9 +74,12 @@ struct AddCarView: View {
                             self.isShowingImagePicker=true
                         }) {
                         
-                                              Image(systemName: "photo").resizable().frame(width: 30,height: 30)// Set the icon using an SF Symbol
+                            Image(systemName: "photo")
+                                .resizable()
+                                .frame(width: 30,height: 30)// Set the icon using an SF Symbol
                                 .foregroundColor(.gray)
-                            Text("Photo").foregroundColor(Color.black)
+                            Text("Photo")
+                                .foregroundColor(Color.black)
                         } .fullScreenCover(isPresented:$isShowingImagePicker, onDismiss: nil) {
                             ImagePicker(image: $image)
                                 .ignoresSafeArea()
@@ -91,14 +104,19 @@ struct AddCarView: View {
                         }
 
                     }
-                    .padding(.vertical, 10)
-                    .padding(.horizontal, 20)
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .padding(.vertical, 16)
+                    .padding(.horizontal, 24)
                     .background(Color.purple)
                     .foregroundColor(.white)
                     .cornerRadius(10)
+                    .scaleEffect(isShowingImagePicker ? 0.8 : 1.0) // Agrandir le bouton lorsqu'il est appuyé
+                    
                 }
-                 
-                 
+                
+                .padding()
+                .background(Color(red: 0.9, green: 0.85, blue: 0.95))
                 .navigationBarTitle("Add Car", displayMode: .inline)
             }
         }

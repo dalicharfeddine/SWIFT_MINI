@@ -19,7 +19,7 @@ class ListEventViewModel: ObservableObject {
             "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "accessToken") ?? "")",
             "Content-Type": "application/json"
         ]
-        let url = "http://172.17.1.173:9091/event"
+        let url = "\(Baseurl)/event"
 
         AF.request(url, headers: headers)
             .validate()

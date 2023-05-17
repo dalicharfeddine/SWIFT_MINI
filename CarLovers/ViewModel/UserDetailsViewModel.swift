@@ -13,7 +13,7 @@ class UserDetailsViewModel: ObservableObject {
 
     func fetchUserDetails(username: String, completion: @escaping (Result<Void, Error>) -> Void) {
        
-        let url = "http://172.17.1.173:9091/user/\(username)"
+        let url = "\(Baseurl)/user/\(username)"
         AF.request(url)
             .validate()
             .responseJSON { [weak self] response in
